@@ -1,0 +1,43 @@
+{
+  "products": [
+    {
+      "_id": "Iphone1",
+      "title": "iPhone 11 Pro 256GB Gold",
+      "image": "/images/Iphone1.jpg",
+      "description": "Memory:256GB, Front Cam resolution:12 MP, f/2.2, 23mm (wide),SL 3D, (depth/biometrics sensor),Rear Cam resolution:12 MP, f/1.8, 26mm (wide), 1/2.55', 1.4µm, dual pixel PDAF, OIS,12 MP, f/2.0, 52mm (telephoto), 1/3.4', 1.0µm, PDAF, OIS, 2x optical zoom,12 MP, f/2.4, 13mm (ultrawide)",
+      "price": "1,049",
+      "availableSizes": ["Gold", "pink"],
+      "brand": "IPhone"
+    },
+
+    {
+      "_id": "Samsung1",
+      "title": "SAMSUNG Galaxy A31 128GB",
+      "image": "/images/samsung1.jpg",
+      "description": "CPU Speed :2GHz, Front Camera:Resolution 20.0 MP, Rear Camera: Resolution (Multiple) 48.0 MP + 5.0 MP + 8.0 MP + 5.0 MP",
+      "price": "167.00",
+      "availableSizes": ["Gold", "Silver"],
+      "brand": "Samsung"
+    },
+
+    {
+      "_id": "Iphone2",
+      "title": "APPLE iPhone 11 128GB",
+      "image": "/images/Iphone2.jpg",
+      "description": "CPU Speed :2GHz, Front Camera:Resolution 20.0 MP, Rear Camera: Resolution (Multiple) 48.0 MP + 5.0 MP + 8.0 MP + 5.0 MP",
+      "price": "717.00",
+      "availableSizes": ["pink", "Gold"],
+      "brand": "IPhone"
+    },
+
+    {
+      "_id": "Huawei1",
+      "title": "HUAWEI Y5 Lite",
+      "image": "/images/huawei1.jpg",
+      "description": "CPU Speed :2GHz, Front Camera:Resolution 20.0 MP, Rear Camera: Resolution (Multiple) 48.0 MP + 5.0 MP + 8.0 MP + 5.0 MP",
+      "price": "61.00",
+      "availableSizes": ["blue", "white"],
+      "brand": "Huawei"
+    }
+  ]
+}
