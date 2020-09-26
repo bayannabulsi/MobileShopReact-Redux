@@ -1,4 +1,3 @@
-export default function FormatCurrency(num)
-{
-    return "$"+Number(num.toFixed(1).toLocaleString()+" ");
+export default function FormatCurrency(num) {
+  return "$" + parseFloat(num).toFixed(3).toLocaleString() + " ";
 }
