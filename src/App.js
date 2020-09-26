@@ -2,6 +2,7 @@ import React from "react";
 import data from "./Mobilesdata.json";
 import Products from "./Components/Products";
 import Filter from "./Components/Filter";
+import ShoppingCart from "./Components/ShoppingCart";
 
 class App extends React.Component {
   constructor() {
@@ -10,6 +11,7 @@ class App extends React.Component {
       products: data.products,
       size: "",
       sort: "",
+      cartItems: [],
     };
   }
 
@@ -51,6 +53,27 @@ class App extends React.Component {
     }
   };
 
+  DeleteItem = (product) => {
+    const cartItems = this.state.cartItems.slice();
+    this.setState({
+      cartItems: cartItems.filter((x) => x._id !== product._id),
+    });
+  };
+  AddToCart = (product) => {
+    const cartItems = this.state.cartItems.slice();
+    let alreadyInCart = false;
+    cartItems.forEach((item) => {
+      if (item._id === product._id) {
+        item.count++;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      cartItems.push({ ...product, count: 1 });
+    }
+
+    this.setState({ cartItems });
+  };
   render() {
     return (
       <div className="grid-container">
@@ -67,9 +90,14 @@ class App extends React.Component {
                 sortProducts={this.sortProducts}
                 filterProducts={this.filterProducts}
               ></Filter>
-              <Products products={this.state.products}></Products>
+              <Products
+                products={this.state.products}
+                addToCart={this.AddToCart}
+              ></Products>
             </div>
-            <div className="sidebar">cart Items</div>
+            <div className="sidebar">
+              <ShoppingCart cartItems={this.state.cartItems} DeleteItem={this.DeleteItem}></ShoppingCart>
+            </div>
           </div>
         </main>
         <footer>All right Reserved </footer>
