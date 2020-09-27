@@ -11,7 +11,9 @@ class App extends React.Component {
       products: data.products,
       size: "",
       sort: "",
-      cartItems: [],
+      cartItems: localStorage.getItem("cartItems")
+        ? JSON.parse(localStorage.getItem("cartItems"))
+        : [],
     };
   }
 
@@ -53,13 +55,31 @@ class App extends React.Component {
     }
   };
 
+  NewOrder = (order) => {
+    console.log(order);
+    alert("Need to save order for" + order.Name);
+  };
   DeleteItem = (product) => {
     const cartItems = this.state.cartItems.slice();
-    this.setState({
-      cartItems: cartItems.filter((x) => x._id !== product._id),
+    cartItems.forEach((item) => {
+      if (item._id === product._id) {
+        item.count--;
+        if (item.count === 0) {
+          this.setState({
+            cartItems: cartItems.filter((x) => x._id !== product._id),
+          });
+        } else {
+          this.setState({ cartItems });
+        }
+      }
     });
+    localStorage.setItem(
+      "cartItems",
+      JSON.stringify(cartItems.filter((x) => x._id !== product._id))
+    );
   };
-  AddToCart = (product) => {
+
+  AddItem = (product) => {
     const cartItems = this.state.cartItems.slice();
     let alreadyInCart = false;
     cartItems.forEach((item) => {
@@ -73,6 +93,7 @@ class App extends React.Component {
     }
 
     this.setState({ cartItems });
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
   render() {
     return (
@@ -92,11 +113,15 @@ class App extends React.Component {
               ></Filter>
               <Products
                 products={this.state.products}
-                addToCart={this.AddToCart}
+                AddItem={this.AddItem}
               ></Products>
             </div>
             <div className="sidebar">
-              <ShoppingCart cartItems={this.state.cartItems} DeleteItem={this.DeleteItem}></ShoppingCart>
+              <ShoppingCart
+                cartItems={this.state.cartItems}
+                DeleteItem={this.DeleteItem}
+                NewOrder={this.NewOrder}
+              ></ShoppingCart>
             </div>
           </div>
         </main>
