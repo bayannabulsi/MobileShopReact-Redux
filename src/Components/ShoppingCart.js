@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import FormatCurrency from "../Components/util";
+import Slide from "react-reveal/Slide";
+import Fade from "react-reveal/Fade";
 export default class ShoppingCart extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       Name: "",
       Email: "",
@@ -43,24 +45,26 @@ export default class ShoppingCart extends Component {
           <div className="cart">
             <ul className="cart-items">
               {cartItems.map((item) => (
-                <li key={item._id}>
-                  <div>
-                    <img src={item.image} alt={item.tiltle}></img>
-                  </div>
-
-                  <div>
-                    <div>{item.tiltle}</div>
-                    <div className="right">
-                      {FormatCurrency(item.price)} x{item.count} {""}
-                      <button
-                        className="button"
-                        onClick={() => this.props.DeleteItem(item)}
-                      >
-                        Remove
-                      </button>
+                <Slide left cascade={true}>
+                  <li key={item._id}>
+                    <div>
+                      <img src={item.image} alt={item.tiltle}></img>
                     </div>
-                  </div>
-                </li>
+
+                    <div>
+                      <div>{item.tiltle}</div>
+                      <div className="right">
+                        {FormatCurrency(item.price)} x{item.count} {""}
+                        <button
+                          className="button"
+                          onClick={() => this.props.DeleteItem(item)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                </Slide>
               ))}
             </ul>
           </div>
@@ -87,43 +91,45 @@ export default class ShoppingCart extends Component {
               </div>
               {this.state.ShowCheckout && (
                 <div className="cart">
-                  <form onSubmit={this.NewOrder}>
-                    <ul className="form-container">
-                      <li>
-                        <label>Email</label>
-                        <input
-                          name="Email"
-                          type="Email"
-                          required
-                          onChange={this.handleInput}
-                        ></input>
-                      </li>
+                  <Fade right cascade>
+                    <form onSubmit={this.NewOrder}>
+                      <ul className="form-container">
+                        <li>
+                          <label>Email</label>
+                          <input
+                            name="Email"
+                            type="Email"
+                            required
+                            onChange={this.handleInput}
+                          ></input>
+                        </li>
 
-                      <li>
-                        <label>Name</label>
-                        <input
-                          name="Name"
-                          type="text"
-                          required
-                          onChange={this.handleInput}
-                        ></input>
-                      </li>
-                      <li>
-                        <label>Address</label>
-                        <input
-                          type="text"
-                          name="Address"
-                          required
-                          onChange={this.handleInput}
-                        ></input>
-                      </li>
-                      <li>
-                        <button className="button primary" type="submit">
-                          Proceed
-                        </button>
-                      </li>
-                    </ul>
-                  </form>
+                        <li>
+                          <label>Name</label>
+                          <input
+                            name="Name"
+                            type="text"
+                            required
+                            onChange={this.handleInput}
+                          ></input>
+                        </li>
+                        <li>
+                          <label>Address</label>
+                          <input
+                            type="text"
+                            name="Address"
+                            required
+                            onChange={this.handleInput}
+                          ></input>
+                        </li>
+                        <li>
+                          <button className="button primary" type="submit">
+                            Proceed
+                          </button>
+                        </li>
+                      </ul>
+                    </form>
+                  </Fade>
                 </div>
               )}
             </div>
