@@ -3,7 +3,8 @@ import data from "./Mobilesdata.json";
 import Products from "./Components/Products";
 import Filter from "./Components/Filter";
 import ShoppingCart from "./Components/ShoppingCart";
-
+import store from "./store";
+import { Provider } from "react-redux";
 class App extends React.Component {
   constructor() {
     super();
@@ -97,36 +98,38 @@ class App extends React.Component {
   };
   render() {
     return (
-      <div className="grid-container">
-        <header>
-          <a href="/">React Shopping Cart</a>
-        </header>
-        <main>
-          <div className="content">
-            <div className="main">
-              <Filter
-                count={this.state.products.length}
-                size={this.state.size}
-                sort={this.state.sort}
-                sortProducts={this.sortProducts}
-                filterProducts={this.filterProducts}
-              ></Filter>
-              <Products
-                products={this.state.products}
-                AddItem={this.AddItem}
-              ></Products>
+      <Provider store={store}>
+        <div className="grid-container">
+          <header>
+            <a href="/">React Shopping Cart</a>
+          </header>
+          <main>
+            <div className="content">
+              <div className="main">
+                <Filter
+                  count={this.state.products.length}
+                  size={this.state.size}
+                  sort={this.state.sort}
+                  sortProducts={this.sortProducts}
+                  filterProducts={this.filterProducts}
+                ></Filter>
+                <Products
+                  products={this.state.products}
+                  AddItem={this.AddItem}
+                ></Products>
+              </div>
+              <div className="sidebar">
+                <ShoppingCart
+                  cartItems={this.state.cartItems}
+                  DeleteItem={this.DeleteItem}
+                  NewOrder={this.NewOrder}
+                ></ShoppingCart>
+              </div>
             </div>
-            <div className="sidebar">
-              <ShoppingCart
-                cartItems={this.state.cartItems}
-                DeleteItem={this.DeleteItem}
-                NewOrder={this.NewOrder}
-              ></ShoppingCart>
-            </div>
-          </div>
-        </main>
-        <footer>All right Reserved </footer>
-      </div>
+          </main>
+          <footer>All right Reserved </footer>
+        </div>
+      </Provider>
     );
   }
 }
