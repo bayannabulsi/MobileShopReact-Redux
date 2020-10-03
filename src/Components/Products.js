@@ -3,7 +3,9 @@ import FormatCurrency from "../Components/util";
 import Slide from "react-reveal/Slide";
 import Modal from "react-modal";
 import Zoom from "react-reveal/Zoom";
-export default class Products extends Component {
+import { connect } from "react-redux";
+import { GetProducts } from "../Actions/ItemsActions";
+class Products extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -20,38 +22,45 @@ export default class Products extends Component {
     this.setState({ show: false });
   };
 
+  componentDidMount() {
+    this.props.GetProducts();
+  }
   render() {
     const { Selectedproduct } = this.state;
     return (
       <div>
         <Slide left cascade={true}>
-          <ul className="products">
-            {this.props.products.map((product) => (
-              <li key={product._id}>
-                <div className="product">
-                  <a href={"#" + product._id}>
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      onClick={() => this.showModal(product)}
-                    ></img>
-                    <p>{product.title}</p>
-                  </a>
-                  <div className="product-price">
-                    <div> {FormatCurrency(product.price)}</div>
+          {!this.props.products ? (
+            <div> Loading..</div>
+          ) : (
+            <ul className="products">
+              {this.props.products.map((product) => (
+                <li key={product._id}>
+                  <div className="product">
+                    <a href={"#" + product._id}>
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        onClick={() => this.showModal(product)}
+                      ></img>
+                      <p>{product.title}</p>
+                    </a>
+                    <div className="product-price">
+                      <div> {FormatCurrency(product.price)}</div>
 
-                    <button
-                      onClick={() => this.props.AddItem(product)}
-                      className="button primary"
-                    >
-                      {" "}
-                      Add to cart
-                    </button>
+                      <button
+                        onClick={() => this.props.AddItem(product)}
+                        className="button primary"
+                      >
+                        {" "}
+                        Add to cart
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          )}
         </Slide>
         <Modal isOpen={this.state.show} onRequestClose={this.hideModal}>
           <Zoom>
@@ -88,3 +97,6 @@ export default class Products extends Component {
     );
   }
 }
+export default connect((state) => ({ products: state.products.items }), {
+  GetProducts,
+})(Products);
