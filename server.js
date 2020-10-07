@@ -7,7 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 
 mongoose.connect(
-  process.env.MONGODB_URL || "mongodb://localhost/react-shopping-cart-db",
+  process.env.MONGODB_URL || "mongodb://localhost/react-Ecommerce-db",
   {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -23,6 +23,7 @@ const Product = mongoose.model(
     description: String,
     image: String,
     price: Number,
+    brand: String,
     availableColors: [String],
   })
 );
