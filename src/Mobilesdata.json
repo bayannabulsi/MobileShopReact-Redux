@@ -6,8 +6,8 @@
       "image": "/images/Iphone1.jpg",
       "description": "Memory:256GB, Front Cam resolution:12 MP, f/2.2, 23mm (wide),SL 3D, (depth/biometrics sensor),Rear Cam resolution:12 MP, f/1.8, 26mm (wide), 1/2.55', 1.4µm, dual pixel PDAF, OIS,12 MP, f/2.0, 52mm (telephoto), 1/3.4', 1.0µm, PDAF, OIS, 2x optical zoom,12 MP, f/2.4, 13mm (ultrawide)",
       "price": 1049,
-      "availableColors": ["Gold", "pink"],
-      "brand": "Iphone"
+      "brand": "Iphone",
+      "availableColors": ["Gold", "pink"]
     },
 
     {
@@ -16,8 +16,8 @@
       "image": "/images/samsung1.jpg",
       "description": "CPU Speed :2GHz, Front Camera:Resolution 20.0 MP, Rear Camera: Resolution (Multiple) 48.0 MP + 5.0 MP + 8.0 MP + 5.0 MP",
       "price": 167,
-      "availableColors": ["Gold", "Silver"],
-      "brand": "Samsung"
+      "brand": "Samsung",
+      "availableColors": ["Gold", "Silver"]
     },
 
     {
@@ -26,8 +26,8 @@
       "image": "/images/Iphone2.jpg",
       "description": "CPU Speed :2GHz, Front Camera:Resolution 20.0 MP, Rear Camera: Resolution (Multiple) 48.0 MP + 5.0 MP + 8.0 MP + 5.0 MP",
       "price": 717,
-      "availableColors": ["pink", "Gold"],
-      "brand": "Iphone"
+      "brand": "Iphone",
+      "availableColors": ["pink", "Gold"]
     },
 
     {
@@ -36,8 +36,8 @@
       "image": "/images/huawei1.jpg",
       "description": "CPU Speed :2GHz, Front Camera:Resolution 20.0 MP, Rear Camera: Resolution (Multiple) 48.0 MP + 5.0 MP + 8.0 MP + 5.0 MP",
       "price": 61,
-      "availableColors": ["blue", "white"],
-      "brand": "Huawei"
+      "brand": "Huawei",
+      "availableColors": ["blue", "white"]
     }
   ]
 }

@@ -18,7 +18,7 @@ class App extends React.Component {
     };
   }
 
-  sortProducts = (event) => {
+   /* sortProducts = (event) => {
     const sort = event.target.value;
     console.log(event.target.value);
     this.setState((state) => ({
@@ -40,9 +40,9 @@ class App extends React.Component {
         ),
     }));
     console.log(this.state.products);
-  };
+  };  */
 
-  filterProducts = (event) => {
+  /*  filterProducts = (event) => {
     console.log(event.target.value);
     if (event.target.value === "") {
       this.setState({ size: event.target.value, products: data.products });
@@ -55,7 +55,7 @@ class App extends React.Component {
       });
     }
   };
-
+ */
   NewOrder = (order) => {
     console.log(order);
     alert("Need to save order for" + order.Name);
@@ -106,15 +106,8 @@ class App extends React.Component {
           <main>
             <div className="content">
               <div className="main">
-                <Filter
-                  count={this.state.products.length}
-                  size={this.state.size}
-                  sort={this.state.sort}
-                  sortProducts={this.sortProducts}
-                  filterProducts={this.filterProducts}
-                ></Filter>
+                <Filter></Filter>
                 <Products
-                  products={this.state.products}
                   AddItem={this.AddItem}
                 ></Products>
               </div>
