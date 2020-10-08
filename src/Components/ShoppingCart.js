@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import FormatCurrency from "../Components/util";
 import Slide from "react-reveal/Slide";
 import Fade from "react-reveal/Fade";
-export default class ShoppingCart extends Component {
+import { connect } from "react-redux";
+import { RemoveFromCart } from "../Actions/CartActions";
+class ShoppingCart extends Component {
   constructor(props) {
     super();
     this.state = {
@@ -57,7 +59,9 @@ export default class ShoppingCart extends Component {
                         {FormatCurrency(item.price)} x{item.count} {""}
                         <button
                           className="button"
-                          onClick={() => this.props.DeleteItem(item)}
+                          onClick={() =>
+                            this.props.RemoveFromCart(cartItems, item)
+                          }
                         >
                           Remove
                         </button>
@@ -139,3 +143,10 @@ export default class ShoppingCart extends Component {
     );
   }
 }
+
+export default connect(
+  (state) => ({
+    cartItems: state.cart.cartItems,
+  }),
+  { RemoveFromCart }
+)(ShoppingCart);
