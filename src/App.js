@@ -1,61 +1,13 @@
 import React from "react";
-import data from "./Mobilesdata.json";
 import Products from "./Components/Products";
 import Filter from "./Components/Filter";
 import ShoppingCart from "./Components/ShoppingCart";
 import store from "./store";
 import { Provider } from "react-redux";
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      products: data.products,
-      size: "",
-      sort: "",
-      cartItems: localStorage.getItem("cartItems")
-        ? JSON.parse(localStorage.getItem("cartItems"))
-        : [],
-    };
-  }
+ 
 
-   /* sortProducts = (event) => {
-    const sort = event.target.value;
-    console.log(event.target.value);
-    this.setState((state) => ({
-      sort: sort,
-      products: this.state.products
-        .slice()
-        .sort((a, b) =>
-          sort === "lowest"
-            ? a.price > b.price
-              ? 1
-              : -1
-            : sort === "highest"
-            ? a.price < b.price
-              ? 1
-              : -1
-            : a._id > b._id
-            ? 1
-            : -1
-        ),
-    }));
-    console.log(this.state.products);
-  };  */
 
-  /*  filterProducts = (event) => {
-    console.log(event.target.value);
-    if (event.target.value === "") {
-      this.setState({ size: event.target.value, products: data.products });
-    } else {
-      this.setState({
-        size: event.target.value,
-        products: data.products.filter(
-          (product) => product.brand.indexOf(event.target.value) >= 0
-        ),
-      });
-    }
-  };
- */
   NewOrder = (order) => {
     console.log(order);
     alert("Need to save order for" + order.Name);
@@ -108,14 +60,11 @@ class App extends React.Component {
               <div className="main">
                 <Filter></Filter>
                 <Products
-                  AddItem={this.AddItem}
+                
                 ></Products>
               </div>
               <div className="sidebar">
                 <ShoppingCart
-                  cartItems={this.state.cartItems}
-                  DeleteItem={this.DeleteItem}
-                  NewOrder={this.NewOrder}
                 ></ShoppingCart>
               </div>
             </div>
