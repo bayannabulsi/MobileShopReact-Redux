@@ -82,7 +82,7 @@ class Products extends Component {
                   <button
                     className="button primary"
                     onClick={() => {
-                      this.props.AddItem(Selectedproduct);
+                      this.props.AddToCart(Selectedproduct);
                       this.hideModal();
                     }}
                   >

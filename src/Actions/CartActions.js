@@ -2,7 +2,6 @@ import { Add_To_Cart, Remove_From_Cart } from "../Actiontypes";
 
 export const AddToCart = (newproduct) => (dispatch, getState) => {
   const cartItems = getState().cart.cartItems.slice();
-  console.log(cartItems);
   let IsExist = false;
   cartItems.forEach((x) => {
     if (x._id === newproduct._id) {
