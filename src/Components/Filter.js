@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { filterProducts, SortProducts } from "../Actions/ItemsActions";
 class Filter extends Component {
   render() {
-    console.log(this.props.filteredProducts);
     return !this.props.filteredProducts ? (
       <div>Loading...</div>
     ) : (
@@ -35,7 +34,7 @@ class Filter extends Component {
               value={this.props.brand}
               onChange={(e) =>
                 this.props.filterProducts(
-                  this.props.filteredProducts,
+                  this.props.products,
                   e.target.value
                 )
               }

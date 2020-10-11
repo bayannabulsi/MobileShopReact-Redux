@@ -4,7 +4,6 @@ import { Order_Products_By_Price } from "../Actiontypes";
 export const GetProducts = () => async (dispatch) => {
   const res = await fetch("/api/products");
   const data = await res.json();
-  console.log(data);
   dispatch({
     type: Get_Products,
     payload: data,
@@ -12,9 +11,7 @@ export const GetProducts = () => async (dispatch) => {
 };
 
 export const filterProducts = (products, brand) => (dispatch) => {
-  console.log(products);
-  const tree = products[0].brand;
-  console.log(tree);
+  console.log(brand);
   dispatch({
     type: Filter_Products_By_Brand,
     payload: {

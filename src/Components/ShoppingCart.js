@@ -4,6 +4,9 @@ import Slide from "react-reveal/Slide";
 import Fade from "react-reveal/Fade";
 import { connect } from "react-redux";
 import { RemoveFromCart } from "../Actions/CartActions";
+import { NewOrder, ClearOrder } from "../Actions/OrderActions";
+import Modal from "react-modal";
+import Zoom from "react-reveal/Zoom";
 class ShoppingCart extends Component {
   constructor(props) {
     super();
@@ -26,11 +29,16 @@ class ShoppingCart extends Component {
       Email: this.state.Email,
       Address: this.state.Address,
       CartItems: this.props.cartItems,
+      total: this.props.cartItems.reduce((a, c) => a + c.price * c.count, 0),
     };
     this.props.NewOrder(order);
   };
+
+  closeModal = () => {
+    this.props.ClearOrder();
+  };
   render() {
-    const { cartItems } = this.props;
+    const { cartItems, order } = this.props;
     return (
       <div>
         <div>
@@ -41,13 +49,63 @@ class ShoppingCart extends Component {
               You have {cartItems.length} in the cart{""}
             </div>
           )}
+          {console.log(order)}
+          {order && (
+            <Modal isOpen={true} onRequestClose={this.closeModal}>
+              <Zoom>
+                <button className="close-modal" onClick={this.closeModal}>
+                  x
+                </button>
+                <div className="order-details">
+                  <h3 className="success-message">
+                    your order is done successfully
+                  </h3>
+                  <h2>Order {order._id}</h2>
+                  <ul>
+                    <li>
+                      <div> Name:</div>
+                      <div>{order.Name}</div>
+                    </li>
+                    <li>
+                      <div> Email:</div>
+                      <div>{order.Email}</div>
+                    </li>
+                    <li>
+                      <div> Address:</div>
+                      <div>{order.Address}</div>
+                    </li>
+                    <li>
+                      <div> Date:</div>
+                      <div>{order.createdAt}</div>
+                    </li>
+                    <li>
+                      <div>Total:</div>
+                      <div>{FormatCurrency(order.Total)}</div>
+                    </li>
+                    <li>
+                      <div> Cart Items:</div>
+                      <div>
+                        {order.CartItems.map((x) => (
+                          <div>
+                            {x.count}
+                            {"x"}
+                            {x.title}
+                          </div>
+                        ))}
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </Zoom>
+            </Modal>
+          )}
         </div>
 
         <div>
           <div className="cart">
             <ul className="cart-items">
               {cartItems.map((item) => (
-                <Slide left cascade={true}>
+                <Slide key={item._id} left cascade={true}>
                   <li key={item._id}>
                     <div>
                       <img src={item.image} alt={item.tiltle}></img>
@@ -146,7 +204,8 @@ class ShoppingCart extends Component {
 
 export default connect(
   (state) => ({
+    order: state.order.order,
     cartItems: state.cart.cartItems,
   }),
-  { RemoveFromCart }
+  { RemoveFromCart, NewOrder, ClearOrder }
 )(ShoppingCart);
