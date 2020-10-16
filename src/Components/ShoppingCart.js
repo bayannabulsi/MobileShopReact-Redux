@@ -114,7 +114,9 @@ class ShoppingCart extends Component {
                     <div>
                       <div>{item.tiltle}</div>
                       <div className="right">
-                        {FormatCurrency(item.price)} x{item.count} {""}
+                        <div>
+                          {FormatCurrency(item.price)} x{item.count} {""}
+                        </div>
                         <button
                           className="button"
                           onClick={() =>
