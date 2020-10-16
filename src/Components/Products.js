@@ -51,7 +51,7 @@ class Products extends Component {
 
                       <button
                         onClick={() => this.props.AddToCart(product)}
-                        className="button primary"
+                        className="button primary overlay"
                       >
                         {" "}
                         Add to cart

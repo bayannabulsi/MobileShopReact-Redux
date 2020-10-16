@@ -9,10 +9,8 @@ class Filter extends Component {
       <div>
         {" "}
         <div className="filter">
-          <div className="filter-result">
-            {this.props.filteredProducts.length} products
-          </div>
-          <div className="filter-sort">
+          <div>{this.props.filteredProducts.length} products</div>
+          <div className="Menue">
             Order
             <select
               value={this.props.sort}
@@ -23,20 +21,23 @@ class Filter extends Component {
                 )
               }
             >
-              <option value="latest">Latest</option>
-              <option value="lowest">Lowest</option>
-              <option value="highest">Highest</option>
+              <option className="sub-menu" value="latest">
+                Latest
+              </option>
+              <option className="sub-menu" value="lowest">
+                Lowest
+              </option>
+              <option className="sub-menu" value="highest">
+                Highest
+              </option>
             </select>
           </div>
-          <div className="filter-size">
+          <div>
             Filter{""}
             <select
               value={this.props.brand}
               onChange={(e) =>
-                this.props.filterProducts(
-                  this.props.products,
-                  e.target.value
-                )
+                this.props.filterProducts(this.props.products, e.target.value)
               }
             >
               <option value="">All</option>
