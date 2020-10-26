@@ -63,7 +63,7 @@ class Products extends Component {
             </ul>
           )}
         </Slide>
-        <Modal isOpen={this.state.show} onRequestClose={this.hideModal}>
+        <Modal isOpen={this.state.show} onRequestClose={this.hideModal} className="productsModal">
           <Zoom>
             <button className="close-modal" onClick={this.hideModal}>
               x
@@ -73,11 +73,12 @@ class Products extends Component {
                 src={Selectedproduct.image}
                 alt={Selectedproduct.title}
               ></img>
-              <div className="product-details-description">
-                <p>{Selectedproduct.title}</p>
-                <p>{Selectedproduct.description}</p>
-
-                <div className="product-price">
+              <div className="product-Info">
+                <p className="product-Info-text">{Selectedproduct.title}</p>
+                <ul>
+              {Selectedproduct && Selectedproduct.description? ( <div className="product-details-description"><li>Front Camera  :   {Selectedproduct.description[0]}</li> <li>CPU Speed  :   {Selectedproduct.description[1]}</li> <li>Charging  :   {Selectedproduct.description[1]}</li><li>CPU Speed  :   {Selectedproduct.description[2]}</li> <li>OS :   {Selectedproduct.description[3]}</li></div>):null}
+                </ul>
+                <div className="product-price-Modal">
                   <div>{FormatCurrency(Selectedproduct.price)}</div>
                   <button
                     className="button primary"
