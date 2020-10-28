@@ -20,11 +20,12 @@ const Product = mongoose.model(
   new mongoose.Schema({
     _id: { type: String, default: shortid.generate },
     title: String,
-    description: String,
+    description: [String],
     image: String,
     price: Number,
     brand: String,
     availableColors: [String],
+    
   })
 );
 
@@ -55,7 +56,7 @@ const Order = mongoose.model(
       Email: String,
       Name: String,
       Address: String,
-      total: Number,
+      Total: Number,
       CartItems: [
         {
           _id: String,
