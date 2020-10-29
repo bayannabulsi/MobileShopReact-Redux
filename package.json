@@ -27,7 +27,9 @@
   "scripts": {
     "server": "nodemon server.js",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cd shoppingcart && yarn run build",
+    "install-client": "cd shoppingcart && yarn install",
+    "heroku-postbuild":"yarn run install-client && yarn run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
