@@ -3,12 +3,10 @@ import FormatCurrency from "../Components/util";
 import Slide from "react-reveal/Slide";
 import Fade from "react-reveal/Fade";
 import { connect } from "react-redux";
-import { RemoveFromCart,ClearCart } from "../Actions/CartActions";
+import { RemoveFromCart } from "../Actions/CartActions";
 import { NewOrder, ClearOrder } from "../Actions/OrderActions";
 import Modal from "react-modal";
 import Zoom from "react-reveal/Zoom";
-
-
 class ShoppingCart extends Component {
   constructor(props) {
     super();
@@ -16,36 +14,30 @@ class ShoppingCart extends Component {
       Name: "",
       Email: "",
       Address: "",
-      Total:"",
       ShowCheckout: false,
     };
   }
 
-  
   handleInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   NewOrder = (e) => {
-    e.target.reset();
     e.preventDefault();
     const order = {
       Name: this.state.Name,
       Email: this.state.Email,
       Address: this.state.Address,
       CartItems: this.props.cartItems,
-      Total:this.props.cartItems.reduce((a, c) => a + c.price * c.count, 0),
+      total: this.props.cartItems.reduce((a, c) => a + c.price * c.count, 0),
     };
     this.props.NewOrder(order);
   };
 
   closeModal = () => {
-    this.props.ClearCart();
     this.props.ClearOrder();
-    this.setState({ ShowCheckout: false })
   };
   render() {
-  console.log(this.state.ShowCheckout)
     const { cartItems, order } = this.props;
     return (
       <div>
@@ -54,10 +46,10 @@ class ShoppingCart extends Component {
             <div className="cart cart-header">Cart is empty</div>
           ) : (
             <div className="cart cart-header">
-              You have {cartItems.length} items in the cart{""}
+              You have {cartItems.length} in the cart{""}
             </div>
           )}
-          {console.log("ordre",order)}
+          {console.log(order)}
           {order && (
             <Modal isOpen={true} onRequestClose={this.closeModal}>
               <Zoom>
@@ -66,9 +58,9 @@ class ShoppingCart extends Component {
                 </button>
                 <div className="order-details">
                   <h3 className="success-message">
-                    your order is completed successfully
+                    your order is done successfully
                   </h3>
-                  <h2>Order ID : {order._id}</h2>
+                  <h2>Order {order._id}</h2>
                   <ul>
                     <li>
                       <div> Name:</div>
@@ -76,11 +68,11 @@ class ShoppingCart extends Component {
                     </li>
                     <li>
                       <div> Email:</div>
-                      <div >{order.Email}</div>
+                      <div>{order.Email}</div>
                     </li>
                     <li>
                       <div> Address:</div>
-                      <div >{order.Address}</div>
+                      <div>{order.Address}</div>
                     </li>
                     <li>
                       <div> Date:</div>
@@ -92,17 +84,15 @@ class ShoppingCart extends Component {
                     </li>
                     <li>
                       <div> Cart Items:</div>
-                      <ul className="text" >
+                      <div>
                         {order.CartItems.map((x) => (
-                          <li >
+                          <div>
                             {x.count}
                             {"x"}
                             {x.title}
-                            
-                          </li>
+                          </div>
                         ))}
-                        </ul>
-                     
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -149,7 +139,7 @@ class ShoppingCart extends Component {
                   <div>
                     Total:{""}
                     {FormatCurrency(
-                     cartItems.reduce((a, c) => a + c.price * c.count, 0)
+                      cartItems.reduce((a, b) => a + b.price * b.count, 0)
                     )}
                   </div>
                   <button
@@ -198,7 +188,7 @@ class ShoppingCart extends Component {
                         </li>
                         <li>
                           <button className="button primary" type="submit">
-                            Confirm My Order
+                            Proceed
                           </button>
                         </li>
                       </ul>
@@ -219,5 +209,5 @@ export default connect(
     order: state.order.order,
     cartItems: state.cart.cartItems,
   }),
-  { RemoveFromCart, NewOrder, ClearOrder , ClearCart}
+  { RemoveFromCart, NewOrder, ClearOrder }
 )(ShoppingCart);
