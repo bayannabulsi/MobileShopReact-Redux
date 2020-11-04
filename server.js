@@ -80,9 +80,4 @@ app.post("/api/order", async (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-
-if(process.env.NODE_ENV==='production')
-{
-app.use(express.static('SHOPPINGCART/build'))
-}
 app.listen(port, () => console.log("serve at http://localhost:3000"));
