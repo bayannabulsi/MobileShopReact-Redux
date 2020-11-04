@@ -1,4 +1,4 @@
-import { Add_To_Cart, Remove_From_Cart,Clear_Cart } from "../Actiontypes";
+import { Add_To_Cart, Remove_From_Cart } from "../Actiontypes";
 
 export const AddToCart = (newproduct) => (dispatch, getState) => {
   const cartItems = getState().cart.cartItems.slice();
@@ -34,8 +34,3 @@ export const RemoveFromCart = (items, RemovedProduct) => (dispatch) => {
   dispatch({ type: Remove_From_Cart, payload: { cartItems } });
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
-
-export const ClearCart=()=>(dispatch)=>
-{
-dispatch({type:Clear_Cart})
-}

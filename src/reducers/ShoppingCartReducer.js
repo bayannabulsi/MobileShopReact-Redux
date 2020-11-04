@@ -1,4 +1,4 @@
-import { Add_To_Cart, Remove_From_Cart,Clear_Cart } from "../Actiontypes";
+import { Add_To_Cart, Remove_From_Cart } from "../Actiontypes";
 
 export const ShoppingCartReducer = (
   state = { cartItems: JSON.parse(localStorage.getItem("cartItems") || "[]") },
@@ -13,10 +13,6 @@ export const ShoppingCartReducer = (
       return {
         cartItems: action.payload.cartItems,
       };
-      case Clear_Cart:
-        return{
-          cartItems: [],
-        }
     default:
       return state;
   }

@@ -10,7 +10,7 @@ class App extends React.Component {
       <Provider store={store}>
         <div className="grid-container">
           <header>
-            <a href="/">React Mobile Shop</a>
+            <a href="/">React Shopping Cart</a>
           </header>
           <main>
             <div className="content">
@@ -23,7 +23,7 @@ class App extends React.Component {
               </div>
             </div>
           </main>
-          <footer> </footer>
+          <footer>All right Reserved </footer>
         </div>
       </Provider>
     );

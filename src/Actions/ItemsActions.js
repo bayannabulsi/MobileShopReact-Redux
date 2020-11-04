@@ -11,6 +11,7 @@ export const GetProducts = () => async (dispatch) => {
 };
 
 export const filterProducts = (products, brand) => (dispatch) => {
+  console.log(brand);
   dispatch({
     type: Filter_Products_By_Brand,
     payload: {
@@ -19,6 +20,7 @@ export const filterProducts = (products, brand) => (dispatch) => {
         brand === "" ? products : products.filter((x) => x.brand === brand),
     },
   });
+  console.log(brand);
 };
 
 export const SortProducts = (filterdProducts, sort) => (dispatch) => {
@@ -27,6 +29,7 @@ export const SortProducts = (filterdProducts, sort) => (dispatch) => {
   if (sort === "") {
     sortedProducts.sort((a, b) => (a._id > b._id ? 1 : -1));
   } else {
+    console.log(sort);
     sortedProducts.sort((a, b) =>
       sort === "lowest"
         ? a.price > b.price

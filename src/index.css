@@ -4,12 +4,11 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
-
 }
 
 body,
 #root {
-  
+  height: 100vh;
   margin: 0;
   background-color: #e7e6dd;
 }
@@ -29,9 +28,9 @@ textarea {
     "header"
     "main"
     "footer";
-  grid-template-rows: 7% 9fr 50px;
-  grid-template-columns: 1fr;
- 
+  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-columns: 1 fr;
+  height: 100%;
 }
 
 a {
@@ -70,26 +69,29 @@ main {
 
 footer {
   grid-area: footer;
-  background-color: #28122b;
+  background-color: #203040;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100%;
-  color:white
 }
 
+select {
+  width: 150px;
+  margin-left: 10px;
+}
 
 .content {
   display: flex;
   flex-wrap: wrap;
-  min-height: 100%;
 }
 
 .main {
   flex: 3 60rem;
 }
 
-
+.sidebar {
+  flex: 1 20rem;
+}
 
 /*/ products*/
 .products {
@@ -106,7 +108,7 @@ footer {
 
 .products li {
   margin: 30px;
-  height: 25%;
+  height: 30%;
   width: 20%;
 }
 
@@ -133,14 +135,17 @@ footer {
 
 .product p {
   text-align: center;
-  font-size: 15px;
+  font-size: 1.2rem;
 }
-.product-price div {
+.product-price div,
+.product-price button {
   text-align: center;
   flex: 1;
-  font-size: 2rem;
 }
 
+.product-price div {
+  font-size: 2rem;
+}
 
 .button {
   padding: 1rem;
@@ -153,181 +158,42 @@ footer {
   cursor: pointer;
 }
 .button.primary {
-  background-color: #f0c040; 
+  background-color: #f0c040;
 }
 
 .overlay {
-  position: relative;
+  position: absolute;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5); /* Black see-through */
   color: #f1f1f1;
   width: 100%;
+  text-align: center;
   transition: 0.5s ease;
   opacity: 0;
   color: white;
   font-size: 20px;
+  padding: 20px;
 }
 
 .product:hover .overlay {
   opacity: 1;
 }
-
-.button.primary.overlay {
-  padding-bottom: -20px;
-  max-width: 100%;
-}
-
-
-/*product Modal */
-.productsModal {
-  width: 60%;
-  position: relative;
-  left: 21%;
-  top: 13%;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    23deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(0, 250, 222, 0.9780287114845938) 100%
-  );
-}
-
-.product-Info-text {
-  font-size: 30px;
-  position: relative;
-  top: 8px;
-  text-align: center;
-  font-family: "Secular One", sans-serif;
-}
-
-.product-details-description {
-  font-size: 15px;
-  position: relative;
-  left: 20px;
-  margin-top: 80px;
-}
-
-.product-Info .product-price-Modal {
-  position: absolute;
-  bottom: 15%;
-  left: 67%;
-}
-
-.product-price-Modal > button.primary {
-  width: 200px;
-  font-size: 20px;
-  margin-top: 20px;
-}
-
-.product-price-Modal div {
-  text-align: center;
-  flex: 1;
-  font-size: 2rem;
-}
 /*Filter*/
 
 .filter {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding-bottom: 5px;
+  justify-content: space-between;
+  padding: 1rem;
   margin: 1rem;
   border-bottom: 0.1rem #c0c0c0 solid;
   position: relative;
-  top: 3px;
+  top: 1px;
   font-size: 18px;
   font-family: "Roboto Slab", serif;
-  max-height: 46px;
 }
 
-.OrderFilter {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.BrandFilter {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.dropdown {
-  position: relative;
-  top: -5px;
-  width: 170px;
-  border: 1px solid #666;
-  background: #f0c040;
-  min-height: 42px;
-  margin-left: 10px;
-}
-
-.dropdown__text {
-  color: black;
-  padding: 7px 5px;
-  cursor: pointer;
-  height: auto;
-}
-
-.dropdown__text:hover {
-  color: black;
-}
-
-.dropdown__text:after {
-  content: "";
-  transition: all 0.3s;
-  border: solid black;
-  border-width: 0 1px 1px 0;
-  float: right;
-  margin-top: 8px;
-  margin-right: 6px;
-  padding: 5px;
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-}
-
-.dropdown.active {
-  border-bottom: 0px;
-  margin-left: 10px;
-}
-
-.dropdown.active .dropdown__text:after {
-  margin-top: 1px;
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-}
-
-.dropdown__items {
-  position: relative;
-  left: -1px;
-  visibility: hidden;
-  opacity: 0;
-  max-height: 0px;
-  transition: max-height 0.6s ease;
-  width: 170px;
-}
-
-.dropdown.active .dropdown__items {
-  visibility: visible;
-  background-color: #f0c040;
-  border-top: 1px solid #666;
-  border-left: 1px solid #666;
-  border-right: 1px solid #666;
-  height: auto;
-  max-height: 290px;
-  opacity: 1;
-  transition: max-height 0.7s, opacity 1s, visibility 4s ease;
-}
-
-.dropdown__item {
-  cursor: pointer;
-  padding: 10px 18px;
-  width: 100%;
-}
-
-.dropdown__item:hover {
-  color: white;
-  background: #3a4143;
+.filter div {
+  flex: 1;
 }
 
 /*cart*/
@@ -374,28 +240,22 @@ footer {
   flex-direction: row;
   justify-content: space-between;
   text-align: center;
-  font-size: 15px;
+  font-size: 10px;
   font-family: "Roboto Slab", serif;
 }
 
-.Total {
+.total {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   align-items: center;
 }
 
-.Total > div {
-  font-size: 18px;
-  color: red;
-  font-weight: 600;
+.total > div {
+  font-size: 2rem;
 }
-
-.Total > button.primary {
-  margin-top: 20px;
-  font-size: 15px;
-  font-weight: 600;
-  width: 300px;
+.total > div .total > button {
+  flex: 1;
 }
 /* form*/
 .form-container {
@@ -408,7 +268,6 @@ footer {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  font-size: 15px;
 }
 input {
   padding: 1rem;
@@ -419,7 +278,7 @@ form {
   width: 100%;
 }
 
-/*Order Modal*/
+/*Modal*/
 
 .product-details {
   display: flex;
@@ -434,15 +293,15 @@ form {
   margin: 1rem;
 }
 
-.product-Info {
+.product-details-description {
   flex: 1;
   margin: 1rem;
 }
 
 .close-modal {
   position: absolute;
-  right: 2px;
-  top: 2px;
+  right: 1rem;
+  top: 2.5rem;
   z-index: 1000;
 }
 
@@ -456,36 +315,21 @@ form {
   height: 100%;
 }
 
-.order-details ul {
-  position: relative;
-  top: 20px;
-}
-
 .order-details li {
   display: flex;
-  padding-left: 10px;
+  justify-content: space-between;
   align-items: center;
 }
 
-.order-details ul li div {
+.order-details li div {
   padding: 10px;
-  font-size: 20px;
 }
 
 .order-details .items {
+  text-align: right;
   padding: 0;
 }
 
 .success-message {
-  color: red;
-  font-size: 30px;
-  position: relative;
-  bottom: 30px;
-}
-
-.order-details li ul.text {
-  list-style-type: none;
-  font-size: 20px;
-  padding-left: 10px;
-  vertical-align: text-top;
+  color: green;
 }
